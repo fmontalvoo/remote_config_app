@@ -1,18 +1,25 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class RemoteConfigService {
+  static const String COLOR_TEXTO = "color_texto";
+  static const String COLOR_CONTENEDOR = "color_contenedor";
+  static const String LONGITUD_LADO = "longitud_lado";
+  static const String RADIO_CONTENEDOR = "radio_contenedor";
+  static const String TEXTO_SALUDO = "texto_saludo";
+  static const String TAMANIO_FUENTE = "tamanio_fuente";
+
   final RemoteConfig _remoteConfig;
 
   RemoteConfigService({RemoteConfig remoteConfig})
       : this._remoteConfig = remoteConfig;
 
   final defaults = <String, dynamic>{
-    "color_texto": 0xffffffff,
-    "color_contenedor": 0xff0d47a1,
-    "longitud_lado": 250,
-    "radio_contenedor": 2.5,
-    "texto_saludo": "Hola Mundo",
-    "tamanio_fuente": 21
+    COLOR_TEXTO: 0xffffffff,
+    COLOR_CONTENEDOR: 0xff0d47a1,
+    LONGITUD_LADO: 250.0,
+    RADIO_CONTENEDOR: 25.0,
+    TEXTO_SALUDO: "Hola Mundo",
+    TAMANIO_FUENTE: 21.0
   };
 
   static RemoteConfigService _instance;
@@ -39,15 +46,15 @@ class RemoteConfigService {
     await this._remoteConfig.activateFetched();
   }
 
-  int get getColorTexto => this._remoteConfig.getInt('color_texto');
-  int get getColorContenedor => this._remoteConfig.getInt('color_contenedor');
+  int get getColorTexto => this._remoteConfig.getInt(COLOR_TEXTO);
+  int get getColorContenedor => this._remoteConfig.getInt(COLOR_CONTENEDOR);
 
-  double get getLongitudLado => this._remoteConfig.getDouble('longitud_lado');
+  double get getLongitudLado => this._remoteConfig.getDouble(LONGITUD_LADO);
   double get getRadioContenedor =>
-      this._remoteConfig.getDouble('radio_contenedor');
+      this._remoteConfig.getDouble(RADIO_CONTENEDOR);
 
-  String get getTextoSaludo => this._remoteConfig.getString('texto_saludo');
-  double get getTamanioFuente => this._remoteConfig.getDouble('tamanio_fuente');
+  String get getTextoSaludo => this._remoteConfig.getString(TEXTO_SALUDO);
+  double get getTamanioFuente => this._remoteConfig.getDouble(TAMANIO_FUENTE);
 }
 
 // https://medium.com/@tsvillain/update-flutter-app-remotely-using-firebase-remote-config-69aadba275f7
